@@ -12,6 +12,8 @@ urlpatterns = [
     path('room/<int:id>/', views.room, name='room'),
     path('user-profile/<int:id>/', views.userProfile, name='user-profile'),
     path('user-settings/', views.userSettings, name='user-settings'),
+    path('topics/', views.topicView, name='topics'),
+    path('activity/', views.activityView, name='activity'),
 
     #  CRUD
     path('create-room/', views.createRoom, name='create-room'),

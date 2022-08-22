@@ -65,7 +65,7 @@ def home(request):
         room_msgs = Message.objects.all()[0:10]
     rooms_count = rooms.count()
 
-    topics = Topic.objects.all()[0:10]
+    topics = Topic.objects.all()[0:5]
     topics_count = []
     total_count = 0
     for topic in topics:
@@ -79,7 +79,7 @@ def home(request):
     topics_zip = zip(topics, topics_count)
     return render(request, 'base/home.html', {'rooms_zip': rooms_zip,
                                               'rooms_count': rooms_count,
-                                              'room_msgs': room_msgs, 'topics_zip': topics_zip, 'total_count': total_count})
+                                              'room_msgs': room_msgs, 'topics_zip': topics_zip, 'total_count': total_count, 'page': 'home'})
 
 
 def room(request, id):
@@ -133,6 +133,27 @@ def userProfile(request, id):
     for room in rooms:
         rooms_count += 1
     return render(request, 'base/profile.html', {'rooms_count': rooms_count, 'user': user, 'rooms_zip': rooms_zip, 'topics_zip': topics_zip, 'total_count': total_count, 'room_msgs': room_msgs, 'page': 'profile'})
+
+
+def topicView(request):
+    q = request.GET.get('q')
+    if q != None:
+        topics = Topic.objects.filter(name__icontains=q)
+    else:
+        topics = Topic.objects.all()
+    topics_count = []
+    total_count = 0
+    for topic in topics:
+        count = Room.objects.filter(topic=topic).count()
+        topics_count.append(count)
+        total_count += count
+    topics_zip = zip(topics, topics_count)
+    return render(request, 'base/topics.html', {'topics_zip': topics_zip})
+
+
+def activityView(request):
+    room_msgs = Message.objects.all()[0:10]
+    return render(request, 'base/activity.html', {'room_msgs': room_msgs})
 
 
 @login_required(login_url='login')
