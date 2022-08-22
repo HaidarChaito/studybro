@@ -1,0 +1,14 @@
+{
+  "editor.fontSize": 15,
+  "editor.fontFamily": "MonoLisa",
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "html.format.indentHandlebars": true,
+  "html.format.indentInnerHtml": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "python.linting.enabled": true,
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  }
+}

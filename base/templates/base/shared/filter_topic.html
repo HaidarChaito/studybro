@@ -1,0 +1,20 @@
+<!-- Topics Start -->
+<div class="topics">
+  <div class="topics__header">
+    <h2>Browse Topics</h2>
+  </div>
+  <ul class="topics__list">
+    <li>
+      <a href="{{request.path}}" class="active"
+        >All <span>{{total_count}}</span></a
+      >
+    </li>
+    {% for topic,index in topics_zip %}
+
+    <li>
+      <a href="?q={{ topic.name}}">{{ topic.name}} <span>{{index}}</span></a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+<!-- Topics End -->
