@@ -82,6 +82,7 @@ def home(request):
                                               'room_msgs': room_msgs, 'topics_zip': topics_zip, 'total_count': total_count, 'page': 'home'})
 
 
+@login_required(login_url='login')
 def room(request, id):
     room = Room.objects.get(id=id)
     roomMessages = room.message_set.all()
